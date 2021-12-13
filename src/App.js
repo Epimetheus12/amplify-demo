@@ -6,6 +6,7 @@ import './App.css';
 
 function App() {
   const BASE_URL = "http://ebdemo-env.eba-4de9vv9b.us-east-2.elasticbeanstalk.com";
+  // const BASE_URL = "http://localhost:8080";
   const [state, setState] = useState({username: '', createdTime: ''});
   const [err, setErr] = useState({err: ''});
 
@@ -15,14 +16,14 @@ function App() {
       timeout: 1000
     });
     instance.get('/user/?id=1').then(
-        (data) => {
-          setState({username: data.username, createdTime: data.createdTime});
+        data => {
+          setState({username: data.data.username, createdTime: data.data.createdTime});
           setErr({err:''});
         }
     ).catch(err => {
       setErr({err: `${err.message}`})
     })
-  });
+  }, []);
 
 
   return (
