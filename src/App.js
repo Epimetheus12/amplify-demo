@@ -5,15 +5,14 @@ import './App.css';
 
 
 function App() {
-  const BASE_URL = "http://ebdemo-env.eba-4de9vv9b.us-east-2.elasticbeanstalk.com";
+  const BASE_URL = "https://cors-everywhere.herokuapp.com/http://ebdemo-env.eba-4de9vv9b.us-east-2.elasticbeanstalk.com";
   // const BASE_URL = "http://localhost:8080";
   const [state, setState] = useState({username: '', createdTime: ''});
   const [err, setErr] = useState({err: ''});
 
   useEffect( () => {
     const instance = axios.create({
-      baseURL: BASE_URL,
-      timeout: 1000
+      baseURL: BASE_URL
     });
     instance.get('/user/?id=1').then(
         data => {
